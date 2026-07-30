@@ -1,0 +1,21 @@
+BẢN ỔN ĐỊNH CHO RAILWAY
+
+1. Xóa toàn bộ file cũ trong GitHub repository.
+2. Đưa các file trong thư mục này lên đúng thư mục gốc repository.
+   Ở thư mục gốc phải nhìn thấy: package.json, railway.json, src.
+3. Railway > Service > Variables:
+   DISCORD_TOKEN=token_bot
+   CLIENT_ID=application_id
+   GUILD_ID=server_id
+   AUTO_REGISTER_COMMANDS=true
+   DATA_DIR=/data
+4. Không tự tạo biến PORT.
+5. Settings > Deploy > Healthcheck Path có thể để /health.
+6. Redeploy và mở Deploy Logs.
+
+Log đúng:
+[HTTP] Health server đang nghe tại 0.0.0.0:...
+[BOT] Đã đăng nhập: ...
+[COMMANDS] Đăng ký lệnh thành công.
+
+Nếu thiếu biến hoặc token sai, deployment vẫn qua healthcheck và log sẽ nói rõ lỗi cấu hình.

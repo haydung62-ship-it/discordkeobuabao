@@ -1,17 +1,46 @@
-KHẮC PHỤC LỖI RAILWAY: HEALTHCHECK SERVICE UNAVAILABLE
+HƯỚNG DẪN NHANH — DISCORD GAME BOT TRÊN RAILWAY
 
-1. Tải toàn bộ thư mục này lên repository GitHub, thay thế bản cũ.
-2. Trong Railway > Variables, kiểm tra:
-   DISCORD_TOKEN=token bot
-   CLIENT_ID=Application ID
-   GUILD_ID=Server ID
-   AUTO_REGISTER_COMMANDS=true
-   DATA_DIR=/data
-3. KHÔNG tự tạo biến PORT.
-4. Chọn Deployments > Redeploy.
-5. Mở View Logs. Log đúng phải có:
-   [HTTP] Health server đang nghe tại cổng ...
-   [BOT] Đã đăng nhập: ...
+1. TẠO BOT DISCORD
+- Vào Discord Developer Portal.
+- New Application -> Bot -> Reset Token.
+- Sao chép Token.
+- General Information -> sao chép Application ID.
+- Cài bot vào server với scopes: bot + applications.commands.
 
-Bản này tắt Railway healthcheck trong railway.json để tránh kẹt ở Network > Healthcheck.
-Khi bot đã hoạt động ổn định, có thể bật lại healthcheckPath=/health.
+2. ĐƯA MÃ NGUỒN LÊN GITHUB
+- Giải nén file ZIP.
+- Tạo repository GitHub.
+- Upload toàn bộ file và thư mục, không upload file .env có Token thật.
+
+3. TRIỂN KHAI RAILWAY
+- Railway -> New Project -> Deploy from GitHub Repo.
+- Chọn repository.
+- Mở Variables và thêm:
+
+DISCORD_TOKEN=Token_bot
+CLIENT_ID=Application_ID
+GUILD_ID=Server_ID
+AUTO_REGISTER_COMMANDS=true
+DATA_DIR=/data
+
+4. LƯU DỮ LIỆU
+- Thêm Railway Volume.
+- Mount path: /data
+- Giữ DATA_DIR=/data
+
+5. KIỂM TRA
+- Mở Deploy Logs.
+- Khi thấy "Đã đăng nhập", bot đã online.
+- Trong Discord gõ /help.
+
+LƯU Ý BẢO MẬT
+- Tuyệt đối không gửi Token cho người khác.
+- Nếu Token bị lộ, Reset Token ngay trong Discord Developer Portal.
+- Railway 24/7 cần service không ngủ và tài khoản còn hạn mức sử dụng.
+
+KHẮC PHỤC HEALTHCHECK RAILWAY
+- Healthcheck Path: /health
+- Không tự đặt biến PORT; Railway sẽ tự cấp PORT.
+- Bản sửa này luôn trả HTTP 200 tại /health khi tiến trình còn chạy.
+- /ready chỉ trả 200 sau khi bot đã kết nối Discord.
+- Nếu vẫn lỗi, mở View logs và kiểm tra DISCORD_TOKEN, CLIENT_ID, GUILD_ID.
