@@ -1,0 +1,19 @@
+{
+  "name": "discord-game-bot-railway",
+  "version": "1.0.0",
+  "description": "Bot Discord trò chơi dùng slash commands, triển khai trên Railway.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "check": "node --check src/index.js && node --check src/commands.js && node --check src/store.js",
+    "dev": "node --env-file=.env src/index.js"
+  },
+  "engines": {
+    "node": ">=24.17.0"
+  },
+  "dependencies": {
+    "discord.js": "14.27.0"
+  },
+  "license": "MIT"
+}
