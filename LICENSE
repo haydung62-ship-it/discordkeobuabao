@@ -1,21 +1,46 @@
-MIT License
+HƯỚNG DẪN NHANH — DISCORD GAME BOT TRÊN RAILWAY
 
-Copyright (c) 2026
+1. TẠO BOT DISCORD
+- Vào Discord Developer Portal.
+- New Application -> Bot -> Reset Token.
+- Sao chép Token.
+- General Information -> sao chép Application ID.
+- Cài bot vào server với scopes: bot + applications.commands.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+2. ĐƯA MÃ NGUỒN LÊN GITHUB
+- Giải nén file ZIP.
+- Tạo repository GitHub.
+- Upload toàn bộ file và thư mục, không upload file .env có Token thật.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+3. TRIỂN KHAI RAILWAY
+- Railway -> New Project -> Deploy from GitHub Repo.
+- Chọn repository.
+- Mở Variables và thêm:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+DISCORD_TOKEN=Token_bot
+CLIENT_ID=Application_ID
+GUILD_ID=Server_ID
+AUTO_REGISTER_COMMANDS=true
+DATA_DIR=/data
+
+4. LƯU DỮ LIỆU
+- Thêm Railway Volume.
+- Mount path: /data
+- Giữ DATA_DIR=/data
+
+5. KIỂM TRA
+- Mở Deploy Logs.
+- Khi thấy "Đã đăng nhập", bot đã online.
+- Trong Discord gõ /help.
+
+LƯU Ý BẢO MẬT
+- Tuyệt đối không gửi Token cho người khác.
+- Nếu Token bị lộ, Reset Token ngay trong Discord Developer Portal.
+- Railway 24/7 cần service không ngủ và tài khoản còn hạn mức sử dụng.
+
+KHẮC PHỤC HEALTHCHECK RAILWAY
+- Healthcheck Path: /health
+- Không tự đặt biến PORT; Railway sẽ tự cấp PORT.
+- Bản sửa này luôn trả HTTP 200 tại /health khi tiến trình còn chạy.
+- /ready chỉ trả 200 sau khi bot đã kết nối Discord.
+- Nếu vẫn lỗi, mở View logs và kiểm tra DISCORD_TOKEN, CLIENT_ID, GUILD_ID.

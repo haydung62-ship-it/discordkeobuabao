@@ -1,5 +1,16 @@
-node_modules/
-.env
-data/
-*.log
-.DS_Store
+# Bắt buộc
+DISCORD_TOKEN=token_bot_cua_ban
+CLIENT_ID=application_id_cua_bot
+
+# Khuyên dùng lúc thử nghiệm để slash command hiện ngay trong một server.
+# Khi bot ổn định, có thể bỏ GUILD_ID để đăng ký lệnh toàn cục.
+GUILD_ID=id_server_thu_nghiem
+
+# true: tự đăng ký/cập nhật slash commands mỗi lần bot khởi động
+AUTO_REGISTER_COMMANDS=true
+
+# Thư mục lưu điểm/xu. Railway: gắn Volume tại /data rồi đặt DATA_DIR=/data
+DATA_DIR=./data
+
+# Railway tự cung cấp PORT; chỉ cần khi chạy máy cá nhân
+PORT=3000
